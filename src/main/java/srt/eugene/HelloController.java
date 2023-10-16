@@ -43,7 +43,6 @@ public class HelloController {
 
     @FXML
     void startAll(MouseEvent eventStart) {
-        calculatedThread.enable();
 
         //1
         if (checkBox1.isSelected()) {
@@ -100,6 +99,10 @@ public class HelloController {
             progressPercent5 = 0;
             progress5.setProgress(progressPercent5);
         }
+
+        calculatedThread.enable();
+        double boxCount = progressPercent1 + progressPercent2 + progressPercent3 + progressPercent4 + progressPercent5;
+        calculatedThread.setMultiplier(boxCount);
     }
 
     @FXML
