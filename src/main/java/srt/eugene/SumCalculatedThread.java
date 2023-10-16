@@ -1,38 +1,40 @@
 package srt.eugene;
 
-public class SumCalculatedThread extends Thread {
+public class SumCalculatedThread {
 
     private int sum;
 
-    private boolean isEnabled = false;
+    private boolean enabled = false;
 
     public SumCalculatedThread(int sum) {
         this.sum = sum;
     }
 
-    @Override
     public void run() {
-        while (isEnabled) {
-            try {
-                sum += 150;
-                System.out.println(sum);
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+        Thread thread = new Thread(() -> {
+            while (enabled) {
+                try {
+                    sum += 150;
+                    System.out.println(sum);
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
-        }
+        });
+        thread.start();
     }
 
     public int getSum() {
         return sum;
     }
 
-    public void disable() {
-        isEnabled = false;
+    public void enable() {
+        this.enabled = true;
+        run();
     }
 
-    public void enable() {
-        isEnabled = true;
-        start();
+    public void disable() {
+        this.enabled = false;
     }
 }

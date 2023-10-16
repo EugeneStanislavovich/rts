@@ -103,7 +103,7 @@ public class HelloController {
     }
 
     @FXML
-    void stopAll(MouseEvent eventStop) {
+    void stopAll(MouseEvent eventStop) throws InterruptedException {
         calculatedThread.disable();
 
         if (checkBox1.isSelected()) {
