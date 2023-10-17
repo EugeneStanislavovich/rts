@@ -1,5 +1,7 @@
 package srt.eugene;
 
+import javafx.fxml.FXML;
+
 public class SumCalculatedThread {
 
     private int sum;
@@ -13,6 +15,7 @@ public class SumCalculatedThread {
     }
 
     public void run() {
+
         Thread thread = new Thread(() -> {
             while (enabled) {
                 try {
@@ -25,6 +28,7 @@ public class SumCalculatedThread {
             }
         });
         thread.start();
+
     }
 
     public int getSum() {
@@ -44,4 +48,10 @@ public class SumCalculatedThread {
     public void disable() {
         this.enabled = false;
     }
+
+    public void setSum(int sum) {
+        this.sum = sum;
+    }
+
 }
+

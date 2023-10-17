@@ -12,14 +12,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-
 import java.net.URL;
 import java.util.ResourceBundle;
+
 
 public class HelloController {
     @FXML
     public Button startButton, stopButton;
     public TextField allsum;
+    public Button allClear;
     @FXML
     private ProgressBar progress1, progress2, progress3, progress4, progress5, progress6;
     @FXML
@@ -29,7 +30,9 @@ public class HelloController {
     private Button progressTestButton;
 
     @FXML
-    private Text text;
+    public Text text;
+
+
 
     private final SumCalculatedThread calculatedThread = new SumCalculatedThread(0);
 
@@ -43,6 +46,7 @@ public class HelloController {
 
     @FXML
     void startAll(MouseEvent eventStart) {
+
 
         //1
         if (checkBox1.isSelected()) {
@@ -103,7 +107,19 @@ public class HelloController {
         calculatedThread.enable();
         double boxCount = progressPercent1 + progressPercent2 + progressPercent3 + progressPercent4 + progressPercent5;
         calculatedThread.setMultiplier(boxCount);
+        //calculatedThread.getSum();
+        System.out.println(calculatedThread);
+        text.setText("Тест кнопка");
+
+        //allsum.setText(String.valueOf(calculatedThread.getSum()));
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            allsum.setText(String.valueOf(calculatedThread.getSum()));
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+
     }
+
 
     @FXML
     void stopAll(MouseEvent eventStop) throws InterruptedException {
@@ -113,6 +129,8 @@ public class HelloController {
             progressPercent1 = 0;
             progress1.setProgress(progressPercent1);
             System.out.println("Остановлен1");
+            progressTestButton.setText("1");
+
         } else {
             System.out.println("НеОстановлен1");
         }
@@ -126,6 +144,10 @@ public class HelloController {
     }
 
     int i = 0;
+
+    public void clearAll(MouseEvent mouseEvent) {
+        calculatedThread.setSum(0);
+    }
 
     public class Time implements Initializable {
 
