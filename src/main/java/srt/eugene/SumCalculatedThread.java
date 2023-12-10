@@ -1,14 +1,26 @@
 package srt.eugene;
 
-import javafx.fxml.FXML;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 public class SumCalculatedThread {
 
+
     private int sum;
+
 
     private boolean enabled = false;
 
     private int multiplier;
+
+    private int cash;
+
+    private int bank;
+
+
+
 
     public SumCalculatedThread(int sum) {
         this.sum = sum;
@@ -19,8 +31,9 @@ public class SumCalculatedThread {
         Thread thread = new Thread(() -> {
             while (enabled) {
                 try {
-                    sum += 150.0 * multiplier;
-                    System.out.println(sum);
+                    sum += 300.0 * multiplier;
+                    bank = (int) (sum/2.1);
+                    cash = (int) (sum/2.5);
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
@@ -42,7 +55,10 @@ public class SumCalculatedThread {
 
     public void setMultiplier(double multiplier) {
         this.multiplier = (int) multiplier;
-        System.out.println(multiplier);
+
+    }
+    public int getMultiplier() {
+        return multiplier;
     }
 
     public void disable() {
@@ -53,5 +69,21 @@ public class SumCalculatedThread {
         this.sum = sum;
     }
 
+    public int getCash() {
+        return cash;
+    }
+
+    public void setCash(int cash) {
+        this.cash = cash;
+    }
+
+    public int getBank() {
+        return bank;
+    }
+
+    public void setBank(int bank) {
+        this.bank = bank;
+    }
 }
+
 

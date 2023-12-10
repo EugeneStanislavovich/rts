@@ -5,11 +5,10 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -19,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="srt.eugene.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="srt.eugene.HelloController">
    <children>
       <TabPane layoutX="4.0" layoutY="4.0" prefHeight="439.0" prefWidth="790.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -27,10 +26,10 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="31.0" layoutX="11.0" layoutY="230.0" stroke="BLACK" strokeType="INSIDE" width="224.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="107.0" layoutX="11.0" layoutY="230.0" stroke="BLACK" strokeType="INSIDE" width="373.0" />
                         <ImageView fitHeight="130.0" fitWidth="517.0" layoutX="259.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../java/srt/eugene/assets/moika.png" />
+                              <Image url="@mojka.jpg" />
                            </image></ImageView>
                         <Text layoutX="377.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Бокс 1" />
                         <Text layoutX="436.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Бокс 2" wrappingWidth="35.15625" />
@@ -63,7 +62,6 @@
                                     <Font size="13.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="text" layoutX="14.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="94.0" />
                            </children>
                         </AnchorPane>
                         <Text layoutX="41.0" layoutY="371.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Деньги">
@@ -76,75 +74,27 @@
                               <Font name="System Italic" size="20.0" />
                            </font>
                         </Text>
-                        <Button fx:id="startButton" layoutX="15.0" layoutY="232.0" mnemonicParsing="false" onMousePressed="#startAll" text="Запуск" />
-                        <Button fx:id="stopButton" layoutX="83.0" layoutY="232.0" mnemonicParsing="false" onMousePressed="#stopAll" text="Остановка" />
-                        <Button fx:id="progressTestButton" layoutX="175.0" layoutY="232.0" mnemonicParsing="false" onAction="#increaseProgress" onMousePressed="#testingButton" text="Кнопка" />
+                        <Button fx:id="startButton" layoutX="28.0" layoutY="232.0" mnemonicParsing="false" onMousePressed="#startAll" prefHeight="26.0" prefWidth="86.0" text="Запуск" />
+                        <Button fx:id="stopButton" layoutX="137.0" layoutY="231.0" mnemonicParsing="false" onMousePressed="#stopAll" prefHeight="26.0" prefWidth="114.0" text="Остановка" />
+                        <Button fx:id="progressTestButton" layoutX="262.0" layoutY="231.0" mnemonicParsing="false" onAction="#increaseProgress" onMousePressed="#testingButton" prefHeight="26.0" prefWidth="113.0" text="Нет воды" />
                         <ProgressBar fx:id="progress1" layoutX="375.0" layoutY="188.0" prefHeight="18.0" prefWidth="41.0" progress="0.0" />
                         <ProgressBar fx:id="progress2" layoutX="433.0" layoutY="188.0" prefHeight="18.0" prefWidth="41.0" progress="0.0" />
                         <ProgressBar fx:id="progress3" layoutX="498.0" layoutY="188.0" prefHeight="18.0" prefWidth="41.0" progress="0.0" />
                         <ProgressBar fx:id="progress4" layoutX="557.0" layoutY="188.0" prefHeight="18.0" prefWidth="41.0" progress="0.0" />
                         <ProgressBar fx:id="progress5" layoutX="620.0" layoutY="188.0" prefHeight="18.0" prefWidth="41.0" progress="0.0" />
                         <ProgressBar fx:id="progress6" layoutX="679.0" layoutY="188.0" prefHeight="18.0" prefWidth="41.0" progress="0.0" />
+                        <Button fx:id="backWater" layoutX="28.0" layoutY="284.0" mnemonicParsing="false" onAction="#waterBack" onMousePressed="#testingButton" text="Вернуть воду" />
+                        <Button layoutX="136.0" layoutY="284.0" mnemonicParsing="false" onAction="#gateBrokeDown" onMousePressed="#testingButton" text="Ворота сломались" />
+                        <Button layoutX="260.0" layoutY="284.0" mnemonicParsing="false" onAction="#gateRepair" onMousePressed="#testingButton" text="Починить ворота" />
                      </children>
                   </AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="Таблица">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TabPane prefHeight="372.0" prefWidth="790.0" tabClosingPolicy="UNAVAILABLE">
-                          <tabs>
-                            <Tab text="Деньги">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="649.0">
-                                       <children>
-                                          <TableView layoutY="18.0" prefHeight="307.0" prefWidth="602.0">
-                                             <columns>
-                                                <TableColumn prefWidth="75.0" text="Время" />
-                                                <TableColumn prefWidth="75.0" text="Бокс 1" />
-                                                <TableColumn prefWidth="75.0" text="Бокс 2" />
-                                                <TableColumn prefWidth="75.0" text="Бокс 3" />
-                                                <TableColumn prefWidth="75.0" text="Бокс 4" />
-                                                <TableColumn prefWidth="75.0" text="Бокс 5" />
-                                                <TableColumn prefWidth="75.0" text="Бокс 6" />
-                                                <TableColumn prefWidth="75.0" text="Сумма" />
-                                             </columns>
-                                          </TableView>
-                                       </children>
-                                    </AnchorPane>
-                              </content>
-                            </Tab>
-                            <Tab text="Расход химии">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                       <children>
-                                          <TableView layoutY="18.0" prefHeight="307.0" prefWidth="602.0">
-                                             <columns>
-                                                <TableColumn prefWidth="75.0" text="Время" />
-                                                <TableColumn prefWidth="75.0" text="Бокс 1" />
-                                                <TableColumn prefWidth="75.0" text="Бокс 2" />
-                                                <TableColumn prefWidth="75.0" text="Бокс 3" />
-                                                <TableColumn prefWidth="75.0" text="Бокс 4" />
-                                                <TableColumn prefWidth="75.0" text="Бокс 5" />
-                                                <TableColumn prefWidth="75.0" text="Бокс 6" />
-                                                <TableColumn prefWidth="75.0" text="Сумма" />
-                                             </columns>
-                                          </TableView>
-                                       </children>
-                                    </AnchorPane>
-                              </content>
-                            </Tab>
-                          </tabs>
-                        </TabPane>
-                     </children></AnchorPane>
             </content>
           </Tab>
             <Tab text="График">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <LineChart layoutX="14.0" layoutY="14.0" prefHeight="362.0" prefWidth="597.0">
+                        <LineChart fx:id="graphics" layoutX="14.0" layoutY="14.0" prefHeight="329.0" prefWidth="337.0" title="Нал/безнал">
                            <xAxis>
                               <CategoryAxis side="BOTTOM" />
                            </xAxis>
@@ -152,6 +102,26 @@
                               <NumberAxis side="LEFT" />
                            </yAxis>
                         </LineChart>
+                        <Label layoutX="14.0" layoutY="6.0" prefHeight="18.0" prefWidth="44.0" text="рубли" />
+                        <Label layoutX="193.0" layoutY="334.0" text="Красный нал" textFill="#ff0606">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="58.0" layoutY="334.0" prefHeight="20.0" prefWidth="135.0" text="Оранжевый безнал" textFill="#ff9b08">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <LineChart fx:id="graphics1" layoutX="402.0" layoutY="19.0" prefHeight="318.0" prefWidth="387.0" title="Расход пены за время">
+                           <xAxis>
+                              <CategoryAxis side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis side="LEFT" />
+                           </yAxis>
+                        </LineChart>
+                        <Label layoutX="409.0" layoutY="10.0" prefHeight="18.0" prefWidth="44.0" text="мл" />
                      </children></AnchorPane>
                </content>
             </Tab>
@@ -164,11 +134,8 @@
             <Text layoutX="23.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Наличные" />
             <Text layoutX="23.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Банк" />
             <TextField fx:id="allsum" layoutX="132.0" layoutY="10.0" />
-            <TextField layoutX="132.0" layoutY="71.0" />
-            <TextField layoutX="132.0" layoutY="136.0" />
-            <Button fx:id="allClear" layoutX="281.0" layoutY="10.0" mnemonicParsing="false" onMousePressed="#clearAll" text="Сброс (Общий)" />
-            <Button layoutX="281.0" layoutY="71.0" mnemonicParsing="false" text="Сброс (Нал)" />
-            <Button layoutX="281.0" layoutY="136.0" mnemonicParsing="false" text="Сброс (Банк)" />
+            <TextField fx:id="cashField" layoutX="132.0" layoutY="71.0" />
+            <TextField fx:id="bankField" layoutX="132.0" layoutY="136.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="401.0" layoutY="405.0" prefHeight="184.0" prefWidth="373.0">
@@ -177,12 +144,9 @@
             <Text layoutX="23.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Дозатор 1" />
             <Text layoutX="23.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Дозатор 2" />
             <Text layoutX="23.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Дозатор 3" />
-            <TextField layoutX="132.0" layoutY="10.0" />
-            <TextField layoutX="132.0" layoutY="71.0" />
-            <TextField layoutX="132.0" layoutY="136.0" />
-            <Button layoutX="281.0" layoutY="10.0" mnemonicParsing="false" text="Сброс (Доз. 1)" />
-            <Button layoutX="281.0" layoutY="71.0" mnemonicParsing="false" text="Сброс (Доз. 2)" />
-            <Button layoutX="281.0" layoutY="136.0" mnemonicParsing="false" text="Сброс (Доз. 3)" />
+            <TextField fx:id="doz1" layoutX="132.0" layoutY="10.0" />
+            <TextField fx:id="doz2" layoutX="132.0" layoutY="71.0" />
+            <TextField fx:id="doz3" layoutX="132.0" layoutY="136.0" />
          </children>
       </AnchorPane>
    </children>
