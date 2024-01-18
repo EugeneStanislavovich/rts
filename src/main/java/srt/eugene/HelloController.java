@@ -20,6 +20,8 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -33,6 +35,15 @@ public class HelloController {
     private XYChart.Series<String, Number>  series = new XYChart.Series<>();
     private XYChart.Series<String, Number>  series1 = new XYChart.Series<>();
     private XYChart.Series<String, Number>  seriesGraphics2 = new XYChart.Series<>();
+
+    @FXML
+    private TextField repairs;
+
+    @FXML
+    private TextField waterField;
+
+    @FXML
+    private TextField moneField;
 
     @FXML
     private TextField bankField;
@@ -52,6 +63,9 @@ public class HelloController {
     public Button startButton, stopButton;
 
     public TextField allsum;
+    int waterSum=0;
+    int repairSum;
+    int money;
 
     @FXML
     private ProgressBar progress1, progress2, progress3, progress4, progress5, progress6;
@@ -82,8 +96,19 @@ public class HelloController {
 
     @FXML
     void startAll(MouseEvent eventStart) {
-
-
+        List<CheckBox> checkBoxes = new ArrayList<>();
+        checkBoxes.add(checkBox1);
+        checkBoxes.add(checkBox2);
+        checkBoxes.add(checkBox3);
+        checkBoxes.add(checkBox4);
+        checkBoxes.add(checkBox5);
+        checkBoxes.add(checkBox6);
+        Random random = new Random();
+        int boxes = random.nextInt(6);
+        for (int j = 0; j < boxes; j++) {
+            int check = random.nextInt(5);
+            checkBoxes.get(check).setSelected(true);
+        }
         //1
         if (checkBox1.isSelected()) {
             progressPercent1 = 1;
@@ -151,6 +176,8 @@ public class HelloController {
             allsum.setText(calculatedThread.getSum() + " рублей");
             cashField.setText(calculatedThread.getCash() + " рублей");
             bankField.setText(calculatedThread.getBank() + " рублей");
+            repairs.setText(repairSum + " рублей");
+            moneField.setText(money + " рублей");
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         dozChecker();
@@ -223,6 +250,7 @@ public class HelloController {
 
     @FXML
     void waterBack(ActionEvent event) {
+        repairSum+=2000;
         calculatedThread.enable();
         thread.enable();
         JOptionPane.showMessageDialog(null, "Связались с водоконалом, всё успешно восстановлено");
@@ -273,6 +301,7 @@ public class HelloController {
 
     @FXML
     void gateRepair(ActionEvent event) {
+        repairSum+=1500;
         progress1.setVisible(true);
         progress2.setVisible(true);
         progress3.setVisible(true);
@@ -319,6 +348,9 @@ public class HelloController {
 
                             Random random =new Random();
                             double waterPena =random.nextDouble(0.7);
+                            waterSum += (int)(waterPena * 200);
+                            waterField.setText(waterSum + " рублей");
+                            money = calculatedThread.getSum() - waterSum - repairSum;
                             LocalDateTime current = LocalDateTime.now();
                             String formattedTime = current.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
                             int cash = calculatedThread.getCash();
